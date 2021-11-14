@@ -1,4 +1,11 @@
 import argparse
+import os
+
+from . import data
+
+"""
+Responsible for parsing and processing user input.
+"""
 
 def main():
     args = parse_args()
@@ -16,4 +23,5 @@ def parse_args():
     return parser.parse_args()
 
 def init(args):
-    print('Hello World')
+    data.init()
+    print(f'Initialized empty gitdown repository in (os.getcwd())/data.GIT_DR)')
