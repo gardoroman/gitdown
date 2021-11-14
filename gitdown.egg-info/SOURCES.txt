@@ -1,0 +1,7 @@
+README.md
+setup.py
+gitdown.egg-info/PKG-INFO
+gitdown.egg-info/SOURCES.txt
+gitdown.egg-info/dependency_links.txt
+gitdown.egg-info/entry_points.txt
+gitdown.egg-info/top_level.txt

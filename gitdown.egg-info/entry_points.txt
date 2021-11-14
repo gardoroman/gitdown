@@ -1,0 +1,3 @@
+[console_scripts]
+gitdown = gitdown.cli:main
+
