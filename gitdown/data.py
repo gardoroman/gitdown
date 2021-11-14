@@ -10,17 +10,26 @@ def init():
     os.makedirs(get_git_dir())
     os.makedirs(get_object_path())
 
-def hash_object(data):
-    oid = hashlib.sha1(data).hexdigest()
+def hash_object(data, type_ = 'blob'):
+    obj = type_.encode() + b'\x00' + data
+    oid = hashlib.sha1(obj).hexdigest()
     path = get_object_path(oid)
     with open(path, 'wb') as out:
-        out.write(data)
+        out.write(obj)
     return oid
 
-def get_object(oid):
+def get_object(oid, expected='blob'):
     path = get_object_path(oid)
     with open(path, 'rb') as f:
-        return f.read()
+        obj = f.read()
+    
+    type_, _, content = obj.partition(b'\x00')
+    type_ = type_.decode
+
+    if expected is not None:
+        assert type_ == expected, f'Expected{expected}, got {type_}'
+    
+    return content
 
 
 # Helper functions for data.py
