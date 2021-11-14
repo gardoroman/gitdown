@@ -23,3 +23,9 @@ _note:_ This project will skip this step for sake of simplicity.
 ### **Refactor**
 Change _f-string logic_ to us `os.join.path`
 
+The `cat-file` command does the opposite of `hash-object`. It prints the object by its OID.  
+It reads the content of `.gitdown/objects/{OID}`.
+
+
+
+
