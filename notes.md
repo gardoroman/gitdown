@@ -48,13 +48,17 @@ When reading the file, the type will be used to verify that it is the intended t
 
 The default type is `blob`.
 
+### **Base Module**
+The base module will have the basic higher-level logic of git. 
+For example, it will use the object database to implement higher-level structures for storing directories.
 
 
-## **Refactors**
-Change _f-string logic_ to us `os.join.path`
+### **write-tree**
+The `write-tree` command stores the current working directory in the object database.  
+`hash-object` stores a file and `write-tree` stores a whole directory.
+Both operations return an OID.
 
+In Git a "tree" refers to a directory.
 
-
-
-
-
+`write-tree` will be written in the _base module_ because it doesn't write directly o disk but uses the  
+object database from _data_ to store the directory.
