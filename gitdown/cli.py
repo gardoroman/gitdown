@@ -33,8 +33,15 @@ def parse_args():
     write_tree_parser = commands.add_parser('write-tree')
     write_tree_parser.set_defaults(func=write_tree)
 
-    return parser.parse_args()
+    read_tree_parser = commands.add_parser('read-tree')
+    read_tree_parser.set_defaults(func=read_tree)
+    read_tree_parser.add_argument('tree')
 
+    return parser.parse_args()
+#----------------------------------------------------------------------------
+# `init`
+# command for CLI. Initialize project: `gitdown init`
+#----------------------------------------------------------------------------
 def init(args):
     data.init()
     cwd = os.getcwd()
@@ -51,3 +58,6 @@ def cat_file(args):
 
 def write_tree(args):
     print(base.write_tree())
+
+def read_tree(args):
+    base.read_tree(args.tree)

@@ -62,3 +62,7 @@ In Git a "tree" refers to a directory.
 
 `write-tree` will be written in the _base module_ because it doesn't write directly o disk but uses the  
 object database from _data_ to store the directory.
+
+### **read-tree
+Reading the tree involves iterating through a path and parsing the tree into a dictionary.  
+The file OIDs are retrieved and then written to the working directory
