@@ -66,3 +66,12 @@ object database from _data_ to store the directory.
 ### **read-tree
 Reading the tree involves iterating through a path and parsing the tree into a dictionary.  
 The file OIDs are retrieved and then written to the working directory
+
+## **Commit Object**
+The commit object consists of a snapshot with:
+* a descriptive message
+* time snapshot was created
+* author of the snapshot
+
+The commit object will be stored in the object database with a type of _commit_.  
+The first line of a commit will be key/values then an empty line denoting the end of the key/values followed by a commit message.
