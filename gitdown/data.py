@@ -10,6 +10,16 @@ def init():
     os.makedirs(get_git_dir())
     os.makedirs(_get_object_path())
 
+def set_head(oid):
+    with open(f'{get_git_dir()}/HEAD', 'w') as f:
+        f.write(oid)
+
+def get_head():
+    head_path = f'{get_git_dir()}/HEAD'
+    if os.path.isfile(head_path):
+        with open(head_path) as f:
+            return f.read().strip()
+
 def hash_object(data, type_ = 'blob'):
     obj = type_.encode() + b'\x00' + data
     oid = hashlib.sha1(obj).hexdigest()
@@ -24,7 +34,7 @@ def get_object(oid, expected='blob'):
         obj = f.read()
     
     type_, _, content = obj.partition(b'\x00')
-    type_ = type_.decode
+    type_ = type_.decode()
 
     if expected is not None:
         assert type_ == expected, f'Expected{expected}, got {type_}'

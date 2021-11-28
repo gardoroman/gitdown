@@ -95,5 +95,26 @@ def read_tree(tree_oid):
         with open(path, 'wb') as f:
             f.write(data.get_object(oid))
 
+#----------------------------------------------------------------------------
+# `commit`
+# Adds a object in Object DB with a type of `commit`.
+# This entails creating a snapshot of key/values and a commit message
+#----------------------------------------------------------------------------
+def commit(message):
+    commit = f'tree {write_tree()}\n'
+
+    head = data.get_head()
+    if head:
+        commit += f'parent {head}\n'
+
+    commit += '\n'
+    commit += f'{message}\n'
+
+    oid = data.hash_object(commit.encode(), 'commit')
+
+    data.set_head(oid)
+    
+    return oid
+
 def is_ignored(path):
     return '.gitdown' in path.split('/') or '.git' in path.split('/')
